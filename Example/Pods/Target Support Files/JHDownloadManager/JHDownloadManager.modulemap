@@ -1,0 +1,6 @@
+framework module JHDownloadManager {
+  umbrella header "JHDownloadManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
