@@ -9,7 +9,7 @@
 import UIKit
 import JHDownloadManager
 
-class DownloadViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, JHDownloadManagerDataDelegate, JHDownloadManagerUIDelegate {
+class DownloadViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, JHDownloadManagerDataDelegate, JHDownloadManagerUIDelegate, UIAlertViewDelegate {
 
     private var tableView:UITableView?
     private var overallProgressView: UIView?
@@ -23,19 +23,29 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
     private var currentDownloadRate:String = ""
     private var downloadRateTimer:NSTimer?
     private var downloadTasks = [JHDownloadTask]()
+    private var currentInputURL:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         downloadManager.uiDelegate = self
         downloadManager.dataDelegate = self
-        downloadManager.fileHashAlgorithm = FileHashAlgorithm.MD5
         self.title = "Download Manager"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addNewDownloadTask")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start", style: UIBarButtonItemStyle.Plain, target: self, action: "downloadManyFileTest:")
         self.view.backgroundColor = UIColor.whiteColor()
         self.setupOverallProgressView()
         self.setupIndividualProgressView()
         self.addConstraints()
         self.addDownloadBatch()
+    }
+    
+    func addNewDownloadTask() {
+        let alertView = UIAlertView(title: "New Download", message: "Key in your URL:", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
+        alertView.alertViewStyle = UIAlertViewStyle.PlainTextInput
+        if let unwrappedInputURL = currentInputURL {
+            alertView.textFieldAtIndex(0)!.text = unwrappedInputURL
+        }
+        alertView.show()
     }
     
     func downloadManyFileTest(startButton: UIBarButtonItem) {
@@ -125,7 +135,7 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func isValidURL(candidate: String) -> Bool {
         let urlRegEx =
-            "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+            "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
         let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx);
         return urlTest.evaluateWithObject(candidate)
     }
@@ -247,5 +257,28 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func didFinishDownloadTask(downloadTask: JHDownloadTask) {
         // do anything with JHDonlownTask instance
+    }
+    
+    // MARK: - UIAlertViewDelegate
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1 { // OK Button
+            let textField = alertView.textFieldAtIndex(0)
+            let url = textField?.text
+            if self.isValidURL(url!) {
+                let parts = url?.componentsSeparatedByString("/")
+                let filename = parts?.last
+                JHDownloadManager.sharedInstance.addDownloadTask([
+                    "url": url!,
+                    "destination": String(format: "test/%@", filename!)
+                ])
+                tableView?.reloadData()
+            } else {
+                currentInputURL = url
+                self.addNewDownloadTask()
+            }
+        } else {
+            currentInputURL = nil
+        }
     }
 }

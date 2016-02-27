@@ -79,7 +79,7 @@ public class JHDownloadBatch: NSObject {
         if let downloadTask = self.downloadInfoOfTaskUrl(forDownloadURL) {
             let absoluteDestinationPath = downloadTask.absoluteDestinationPath()
             let fileManager = NSFileManager.defaultManager()
-            if fileManager.fileExistsAtPath(absoluteDestinationPath ) {
+            if fileManager.fileExistsAtPath(absoluteDestinationPath) {
                 do {
                     try fileManager.removeItemAtPath(absoluteDestinationPath)
                 } catch {
@@ -91,6 +91,7 @@ public class JHDownloadBatch: NSObject {
                 try fileManager.moveItemAtPath(downloadFileLocation.path!, toPath: absoluteDestinationPath)
             } catch let error as NSError {
                 puts(error.description)
+                puts("Hello \(fileManager.fileExistsAtPath(downloadFileLocation.path!))")
                 print("Something went wrong when trying to move the file in place")
                 return false
             }

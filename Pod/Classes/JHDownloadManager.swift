@@ -166,7 +166,7 @@ public class JHDownloadManager: NSObject, NSURLSessionDownloadDelegate {
         self.startDownloadingCurrentBatch()
     }
     
-    func addDownloadTask(task:[String: AnyObject]) -> JHDownloadTask? {
+    public func addDownloadTask(task:[String: AnyObject]) -> JHDownloadTask? {
         if self.currentBatch == nil {
             currentBatch = JHDownloadBatch.init(fileHashAlgorithm: self.fileHashAlgorithm)
         }//end if
