@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "JHDownloadManager"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of JHDownloadManager."
+  s.version          = "1.0.0"
+  s.summary          = "Dead Simple batch of file Download Manager"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,14 +17,15 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
+                       JHDownloadManager is a files download manager built on top of NSURLSession for iOS. It supports auto resume on internet connection recovery.
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/JHDownloadManager"
+  s.homepage         = "https://github.com/jameshuynh/JHDownloadManager"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "James Huynh" => "james@rubify.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/JHDownloadManager.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/jameshuynh/JHDownloadManager.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/jameshu'
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
