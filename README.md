@@ -29,7 +29,7 @@ pod "JHDownloadManager", "~> 1.0.0"
 - If checksum is supplied, the download manager will verify againsts the downloaded file's checksum. If no checksum is supplied, the verification will be only based on the `fileSize`. Default file hashing algorithm is SHA1. You can change by using
 
 ```swift
-let downloadManager = JHDownloadManager.sharedInstance 
+let downloadManager = JHDownloadManager.sharedInstance
 downloadManager.fileHashAlgorithm = FileHashAlgorithm.MD5
 ```
 
@@ -39,7 +39,7 @@ downloadManager.fileHashAlgorithm = FileHashAlgorithm.MD5
 import JHDownloadManager
 
 let downloadManager = JHDownloadManager.sharedInstance
-downloadManager.downloadBatch:([
+downloadManager.downloadBatch([
 [
 "url": "http://87.76.16.10/test10.zip",
 "destination": "test/test10.zip",
@@ -113,7 +113,7 @@ func didFinishAll() {
 
 func didFinishOnDownloadTaskUI(task:JHDownloadTask) {
 // this method runs on main thread
-// ... update completed status of a download task 
+// ... update completed status of a download task
 }
 
 func didReachIndividualProgress(progress:Float, task:JHDownloadTask) {
