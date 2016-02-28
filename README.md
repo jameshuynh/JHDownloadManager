@@ -1,14 +1,5 @@
 # JHDownloadManager
 
-[![CI Status](http://img.shields.io/travis/James Huynh/JHDownloadManager.svg?style=flat)](https://travis-ci.org/James Huynh/JHDownloadManager)
-[![Version](https://img.shields.io/cocoapods/v/JHDownloadManager.svg?style=flat)](http://cocoapods.org/pods/JHDownloadManager)
-[![License](https://img.shields.io/cocoapods/l/JHDownloadManager.svg?style=flat)](http://cocoapods.org/pods/JHDownloadManager)
-[![Platform](https://img.shields.io/cocoapods/p/JHDownloadManager.svg?style=flat)](http://cocoapods.org/pods/JHDownloadManager)
-
-## Usage
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 ## Installation
 
 JHDownloadManager is available through [CocoaPods](http://cocoapods.org). To install
@@ -204,7 +195,7 @@ git clone git@github.com:jameshuynh/JHDownloadManager.git
 - `Cmd + R` to run the example project :-)
 
 <p align="left" >
-<img style='border:1px solid #ccc;' src="https://raw.githubusercontent.com/jameshuynh/ObjectiveCDM/master/ObjectiveCDM-Example/screenshot.png" alt="Running Example" title="Running Example">
+<img style='border:1px solid #ccc;' src="https://raw.githubusercontent.com/jameshuynh/JHDownloadManager/master/Example/screenshot.png" alt="Running Example" title="Running Example">
 </p>
 
 ### Contribution
