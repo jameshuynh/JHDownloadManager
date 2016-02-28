@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		06F9D70B97AAB7BD3C8C7C91 /* Pods_JHDownloadManager_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBFA75033CDC217E0688771 /* Pods_JHDownloadManager_Example.framework */; };
 		162495B28606BA1568C87DB6 /* Pods_JHDownloadManager_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AF236F83750125E1DB207C /* Pods_JHDownloadManager_Tests.framework */; };
-		1A276BD01C81F26700DB4128 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1A276BCF1C81F26700DB4128 /* README.md */; };
 		1A76752B1C7F141A0039B00F /* DownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A76752A1C7F141A0039B00F /* DownloadViewController.swift */; };
 		1A76752D1C7F18D00039B00F /* DownloadEntryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A76752C1C7F18D00039B00F /* DownloadEntryViewCell.swift */; };
 		1A76752F1C7F53B20039B00F /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A76752E1C7F53B20039B00F /* Global.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		07F18EF9605787B723435F96 /* Pods-JHDownloadManager_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHDownloadManager_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JHDownloadManager_Example/Pods-JHDownloadManager_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		1A276BCF1C81F26700DB4128 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A76752A1C7F141A0039B00F /* DownloadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadViewController.swift; sourceTree = "<group>"; };
 		1A76752C1C7F18D00039B00F /* DownloadEntryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadEntryViewCell.swift; sourceTree = "<group>"; };
 		1A76752E1C7F53B20039B00F /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -76,7 +74,6 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				1A276BCF1C81F26700DB4128 /* README.md */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for JHDownloadManager */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -366,7 +363,6 @@
 			files = (
 				1A76752F1C7F53B20039B00F /* Global.swift in Sources */,
 				1A76752B1C7F141A0039B00F /* DownloadViewController.swift in Sources */,
-				1A276BD01C81F26700DB4128 /* README.md in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				1A76752D1C7F18D00039B00F /* DownloadEntryViewCell.swift in Sources */,
 			);
