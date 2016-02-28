@@ -308,7 +308,7 @@ public class JHDownloadManager: NSObject, NSURLSessionDownloadDelegate {
                         }
                     }
                 }//end for
-                
+             
                 if task.completed == true {
                     self.processCompletedDownload(task)
                     self.postToUIDelegateOnIndividualDownload(task)

@@ -91,11 +91,10 @@ public class JHDownloadBatch: NSObject {
                 try fileManager.moveItemAtPath(downloadFileLocation.path!, toPath: absoluteDestinationPath)
             } catch let error as NSError {
                 puts(error.description)
-                puts("Hello \(fileManager.fileExistsAtPath(downloadFileLocation.path!))")
-                print("Something went wrong when trying to move the file in place")
                 return false
             }
-           
+          
+            downloadTask.isDownloading = false
             let isVerified = downloadTask.verifyDownload()
             if isVerified {
                 self.updateCompleteStatus()
@@ -197,10 +196,12 @@ public class JHDownloadBatch: NSObject {
         if let unwrappedSession = self.session {
             if let error = task.downloadError {
                 let downloadTask = unwrappedSession.downloadTaskWithResumeData(error.userInfo[NSURLSessionDownloadTaskResumeData] as! NSData)
+                task.isDownloading = true
                 downloadTask.resume()
                 task.downloadError = nil
             } else {
                 let downloadTask = unwrappedSession.downloadTaskWithRequest(request)
+                task.isDownloading = true
                 downloadTask.resume()
             }
         }

@@ -15,7 +15,8 @@ public class JHDownloadTask: NSObject {
     public var cachedProgress: Float = 0
     internal var totalBytesWritten: Int64 = 0
     internal var totalBytesExpectedToWrite: Int64 = 0
-    
+   
+    internal var isDownloading = false
     public var url: NSURL?
     public var urlString: String?
     public var destination: String?

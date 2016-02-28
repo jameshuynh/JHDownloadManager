@@ -134,10 +134,11 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func isValidURL(candidate: String) -> Bool {
-        let urlRegEx =
-            "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
-        let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx);
-        return urlTest.evaluateWithObject(candidate)
+        if let url = NSURL(string: candidate) {
+            return  UIApplication.sharedApplication().canOpenURL(url)
+        } else {
+            return false
+        }
     }
     
     func setupIndividualProgressView() {
@@ -146,7 +147,6 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView?.registerClass(DownloadEntryViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
-        self.tableView?.estimatedRowHeight = 20
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.view.addSubview(self.tableView!)
     }
@@ -210,7 +210,11 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return downloadTaskInfos.count
+        return downloadTasks.count
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 75
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -272,6 +276,7 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
                     "url": url!,
                     "destination": String(format: "test/%@", filename!)
                 ])
+                downloadTasks = downloadManager.downloadingTasks()
                 tableView?.reloadData()
             } else {
                 currentInputURL = url
