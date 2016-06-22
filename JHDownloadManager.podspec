@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "JHDownloadManager"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "Dead Simple batch of file Download Manager"
 
 # This description is used to generate tags and improve search results.
