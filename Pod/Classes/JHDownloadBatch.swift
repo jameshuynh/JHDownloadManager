@@ -137,7 +137,7 @@ public class JHDownloadBatch: NSObject {
     
     func downloadInfoOfTaskUrl(url: String) -> JHDownloadTask? {
         if let indexOfObject = urls.indexOf(url) {
-            return downloadInputs[Int(indexOfObject.value)]
+            return downloadInputs[Int(indexOfObject)]
         } else {
             return nil
         }

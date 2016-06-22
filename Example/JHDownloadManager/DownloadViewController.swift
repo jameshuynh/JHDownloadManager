@@ -30,8 +30,8 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
         downloadManager.uiDelegate = self
         downloadManager.dataDelegate = self
         self.title = "Download Manager"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addNewDownloadTask")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start", style: UIBarButtonItemStyle.Plain, target: self, action: "downloadManyFileTest:")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(DownloadViewController.addNewDownloadTask))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(DownloadViewController.downloadManyFileTest(_:)))
         self.view.backgroundColor = UIColor.whiteColor()
         self.setupOverallProgressView()
         self.setupIndividualProgressView()
@@ -57,7 +57,7 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
         } else if startButton.title == "Start" {
             downloadManager.startDownloadingCurrentBatch()
             startButton.title = "Pause"
-            downloadRateTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("updateOverallRate"), userInfo: nil, repeats: true)
+            downloadRateTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(DownloadViewController.updateOverallRate), userInfo: nil, repeats: true)
             app.networkActivityIndicatorVisible = true
         } else if startButton.title == "Stop" || startButton.title == "Pause" {
             downloadManager.suspendAllOngoingDownloads()
