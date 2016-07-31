@@ -248,8 +248,9 @@ class DownloadViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func didHitDownloadErrorOnTask(task: JHDownloadTask) {
-        let errorDescription = task.lastErrorMessage
-        downloadLogs.append(errorDescription!)
+        if let errorDescription = task.lastErrorMessage {
+            downloadLogs.append(errorDescription)
+        }
     }
     
     func didReachIndividualProgress(progress: Float, onDownloadTask: JHDownloadTask) {

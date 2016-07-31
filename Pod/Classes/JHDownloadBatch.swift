@@ -186,7 +186,8 @@ public class JHDownloadBatch: NSObject {
             if let unwrappedSession = self.session {
                 let downloadTask = unwrappedSession.downloadTaskWithRequest(request)
                 task.cleanUp()
-                downloadTask.resume()
+                downloadTask.cancel()
+                self.startDownloadTask(task)
             }
         }
     }

@@ -268,6 +268,8 @@ public class JHDownloadManager: NSObject, NSURLSessionDownloadDelegate {
             if let downloadURL = task.originalRequest?.URL?.absoluteString, unwrappedCurrentBatch = currentBatch {
                 if let downloadTaskInfo = unwrappedCurrentBatch.downloadInfoOfTaskUrl(downloadURL) {
                     downloadTaskInfo.captureReceivedError(unwrappedError)
+                    currentBatch?.redownloadRequestOfTask(downloadTaskInfo)
+                    self.postDownloadErrorToUIDelegate(downloadTaskInfo)
                 }
             }
         }
@@ -305,6 +307,9 @@ public class JHDownloadManager: NSObject, NSURLSessionDownloadDelegate {
                         if let downloadTaskInfo = batch.captureDownloadingInfoOfDownloadTask(downloadTask) {
                             self.postToUIDelegateOnIndividualDownload(downloadTaskInfo)
                             isDownloading = true
+                            if downloadTask.state == NSURLSessionTaskState.Suspended {
+                                downloadTask.resume()
+                            }//end if
                         }
                     }
                 }//end for
@@ -360,6 +365,14 @@ public class JHDownloadManager: NSObject, NSURLSessionDownloadDelegate {
             dispatch_async(dispatch_get_main_queue(), {
                 task.cachedProgress = task.downloadingProgress()
                 uiDelegateUnwrapped.didReachIndividualProgress(task.cachedProgress, onDownloadTask: task)
+            })
+        }
+    }
+    
+    func postDownloadErrorToUIDelegate(task:JHDownloadTask) {
+        if let uiDelegateUnwrapped = self.uiDelegate {
+            dispatch_async(dispatch_get_main_queue(), {
+                uiDelegateUnwrapped.didHitDownloadErrorOnTask(task)
             })
         }
     }
