@@ -6,7 +6,7 @@ JHDownloadManager is available through [CocoaPods](http://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "JHDownloadManager", "~> 1.0.1"
+pod "JHDownloadManager", "~> 1.0.2"
 ```
 
 ## Features
